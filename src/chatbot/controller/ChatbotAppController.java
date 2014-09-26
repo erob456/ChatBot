@@ -22,7 +22,7 @@ public class ChatbotAppController
 	{
 		String result = applicationView.showChatbot("Eric");
 		
-		if(result.equalsIgnoreCase("yes"))		
+		if(mySillyChatbot.quitChecker(result))		
 		{
 			quit();
 		}
