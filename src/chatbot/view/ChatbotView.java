@@ -18,7 +18,7 @@ public class ChatbotView
 		String result = "";
 		
 		JOptionPane.showMessageDialog(null, "Hello, " + currentInput);
-		result = JOptionPane.showInputDialog(null, "Do you want to exit?");
+		result = JOptionPane.showInputDialog(null, "How do you say goodbye in Japanese?");
 		return result;
 	}
 }
