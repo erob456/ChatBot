@@ -1,5 +1,7 @@
 package chatbot.model;
 
+import java.util.ArrayList;
+
 /**
  * The chatbot model class.  Used for checking and manipulating Strings.
  * @author erob7388
@@ -7,7 +9,7 @@ package chatbot.model;
  */
 public class Chatbot
 {
-	
+	private ArrayList<String> memeList;
 	private String name;
 	private int chatCount;
 	
@@ -20,6 +22,21 @@ public class Chatbot
 		this.name = name;
 		chatCount = 0;
 	}
+	
+	/** Processes input for the user against the checker methods.  Returns the next output for the view.
+	 * 
+	 * @param currentInput The supplied text.
+	 * @return The processed text based on checker or other methods.
+	 */
+	public String processText(String currentInput)
+	{
+		String result = "";
+		
+		
+		return result;
+	}
+	
+	
 	
 	/**
 	 * Retrieves the name of the Chatbot object.
@@ -65,7 +82,7 @@ public class Chatbot
 	{
 		boolean okToQuit = false;
 		
-		if(input.equalsIgnoreCase("sayonara"))
+		if(input != null && input.equalsIgnoreCase("sayonara"))
 		{
 			okToQuit = true;
 		}
