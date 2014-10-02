@@ -9,23 +9,32 @@ public class ChatbotAppController
 {
 	private ChatbotView applicationView;
 	private Chatbot mySillyChatbot;
+	private String startMessage;
+	private String quitMessage;
 	
 	
 	public ChatbotAppController()
 	{
 		applicationView = new ChatbotView(this);
 		mySillyChatbot = new Chatbot("Derp");
+		startMessage = "Welcome to the " + mySillyChatbot.getName() + " chatbot.  What is your name?";
+		quitMessage = "goodbye cruel user :(";
 		
+	}
+	
+	public Chatbot getMySillyChatbot()
+	{
+		return mySillyChatbot;
 	}
 	
 	public void start()
 	{
-		String result = applicationView.showChatbot("Eric");
+		String result = applicationView.showChatbotDialog(startMessage);
 		
 		
 		while(!mySillyChatbot.quitChecker(result))
 		{
-			result = applicationView.showChatbot(result);
+			result = applicationView.showChatbotDialog(result);
 		}
 		
 		quit();
@@ -33,7 +42,7 @@ public class ChatbotAppController
 	
 	private void quit()
 	{
-		JOptionPane.showMessageDialog(null, "Good Bye Cruel World!!");
+		applicationView.showChatbotMessage(quitMessage);
 		System.exit(0);
 	}
 }
