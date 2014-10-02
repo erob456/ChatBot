@@ -5,6 +5,11 @@ import javax.swing.JOptionPane;
 import chatbot.model.Chatbot;
 import chatbot.view.ChatbotView;
 
+/**
+ * Runs the Chatbot Project. Owns the model and associated views.
+ * @author Eric Roberts
+ * @version 1.2 10/2/14 - cleaned the quit method.
+ */
 public class ChatbotAppController
 {
 	private ChatbotView applicationView;
@@ -17,7 +22,7 @@ public class ChatbotAppController
 	{
 		applicationView = new ChatbotView(this);
 		mySillyChatbot = new Chatbot("Derp");
-		startMessage = "Welcome to the " + mySillyChatbot.getName() + " chatbot.  What is your name?";
+		startMessage = "Welcome to the " + mySillyChatbot.getName() + " chatbot.  What is your favorite meme?";
 		quitMessage = "goodbye cruel user :(";
 		
 	}
@@ -34,6 +39,7 @@ public class ChatbotAppController
 		
 		while(!mySillyChatbot.quitChecker(result))
 		{
+			result = mySillyChatbot.processText(result);
 			result = applicationView.showChatbotDialog(result);
 		}
 		

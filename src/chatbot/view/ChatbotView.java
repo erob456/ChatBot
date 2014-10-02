@@ -23,7 +23,7 @@ public class ChatbotView
 		String result = "";
 		
 		
-		result = JOptionPane.showInputDialog(null, baseController.getMySillyChatbot() + " says: " + currentInput);
+		result = JOptionPane.showInputDialog(null, baseController.getMySillyChatbot().getName() + " says: " + currentInput);
 		
 		return result;
 	}
@@ -34,6 +34,6 @@ public class ChatbotView
 	 */
 	public void showChatbotMessage(String currentInput)
 	{
-		JOptionPane.showMessageDialog(null, baseController.getMySillyChatbot() + " says: " + currentInput);
+		JOptionPane.showMessageDialog(null, baseController.getMySillyChatbot().getName() + " says: " + currentInput);
 	}
 }
