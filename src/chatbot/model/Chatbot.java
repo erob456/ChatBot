@@ -75,7 +75,7 @@ public class Chatbot
 		
 		if(memeChecker(currentInput))
 		{
-			result = "Cool! " + currentInput + " is on of my favorite memes!";
+			result = "Cool! " + currentInput + " is on of my favorite memes! Are there any more memes you like?";
 		}
 		else
 		{
