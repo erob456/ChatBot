@@ -23,7 +23,7 @@ public class ChatbotAppController
 		applicationView = new ChatbotView(this);
 		mySillyChatbot = new Chatbot("Derp");
 		startMessage = "Welcome to the " + mySillyChatbot.getName() + " chatbot.  What is your favorite meme?";
-		quitMessage = "goodbye cruel user :(";
+		quitMessage = "Goodbye cruel user :(";
 		
 	}
 	
