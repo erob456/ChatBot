@@ -90,6 +90,10 @@ public class Chatbot
 		int randomPosition = (int) (Math.random() * 3);
 		if (currentInput != null)
 		{
+			if(currentInput.contains("add:"))
+			{
+				memeList.add(currentInput.substring(5));
+			}
 			if (randomPosition == 0)
 			{
 				if (stringLengthChecker(currentInput))
@@ -98,7 +102,8 @@ public class Chatbot
 				}
 				else
 				{
-					result = "short words";
+					memeList.add(currentInput);
+					result = "What is with you and using short words?";
 				}
 			}
 			else if (randomPosition == 1)
@@ -121,6 +126,7 @@ public class Chatbot
 				else
 				{
 					result = "I hate to break it to you, but your trend setting skills are not prime. Try again.";
+					
 				}
 			}
 		}
@@ -130,12 +136,14 @@ public class Chatbot
 		}
 		return result;
 	}
+	
+	
 
 	private boolean stringLengthChecker(String input)
 	{
 		boolean isTooShort = false;
 
-		if (input.length() >= 20)
+		if (input.length() >= 25)
 		{
 			isTooShort = true;
 		}
@@ -150,6 +158,7 @@ public class Chatbot
 		if (input.contains("computers"))
 		{
 			hasContent = true;
+			
 		}
 		
 		return hasContent;
