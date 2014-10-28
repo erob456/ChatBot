@@ -10,6 +10,7 @@ import javax.swing.SpringLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
+import java.awt.Font;
 
 public class ChatbotPanel extends JPanel
 {
@@ -20,6 +21,7 @@ public class ChatbotPanel extends JPanel
 	private SpringLayout baseLayout;
 	private JTextArea chatArea;
 	private JScrollPane chatPane;
+	private JScrollPane textArea;
 
 	public ChatbotPanel(ChatbotAppController baseController)
 	{
@@ -27,9 +29,11 @@ public class ChatbotPanel extends JPanel
 
 		firstButton = new JButton("Click my button. It will make you click ;D");
 		firstTextField = new JTextField(25);
+		firstTextField.setHorizontalAlignment(SwingConstants.CENTER);
 		baseLayout = new SpringLayout();
-		chatArea = new JTextArea(5, 20);
-		chatPane = new JScrollPane(chatArea);
+		chatPane = new JScrollPane();
+		textArea = new JScrollPane();
+		
 		
 		setupPane();
 		setupPanel();
@@ -50,16 +54,36 @@ public class ChatbotPanel extends JPanel
 		this.add(firstButton);
 		this.add(firstTextField);
 		this.add(chatPane);
+		
+		
 	}
 
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.NORTH, firstButton, 15, SpringLayout.SOUTH, firstTextField);
-		baseLayout.putConstraint(SpringLayout.EAST, firstButton, -93, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, firstTextField, 10, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, firstTextField, -117, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatPane, 75, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, chatPane, 30, SpringLayout.WEST, this);
+		JLabel lblChatbotLabel = new JLabel("Chat Bot");
+		baseLayout.putConstraint(SpringLayout.SOUTH, lblChatbotLabel, 0, SpringLayout.NORTH, firstTextField);
+		baseLayout.putConstraint(SpringLayout.EAST, lblChatbotLabel, -179, SpringLayout.EAST, this);
+		lblChatbotLabel.setBackground(Color.DARK_GRAY);
+		lblChatbotLabel.setForeground(Color.ORANGE);
+		lblChatbotLabel.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+		lblChatbotLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblChatbotLabel);
+		baseLayout.putConstraint(SpringLayout.EAST, firstButton, -117, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, firstTextField, 34, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 122, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstButton, -27, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatPane, 90, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, chatPane, 40, SpringLayout.WEST, this);
+		
+		chatArea = new JTextArea(5, 20);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, 1, SpringLayout.NORTH, chatPane);
+		baseLayout.putConstraint(SpringLayout.EAST, chatArea, -33, SpringLayout.EAST, this);
+		add(chatArea);
+		
+		JTextArea textArea = new JTextArea(5, 20);
+		baseLayout.putConstraint(SpringLayout.NORTH, textArea, 0, SpringLayout.NORTH, chatArea);
+		baseLayout.putConstraint(SpringLayout.WEST, textArea, 2, SpringLayout.EAST, chatPane);
+		add(textArea);
 	}
 
 	private void setupListeners()
@@ -68,10 +92,9 @@ public class ChatbotPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-
-				JOptionPane.showMessageDialog(firstButton, "You clicked me and it tickles!! tehe");
+				chatArea.setText(firstTextField.getText());
+				
 			}
 		});
 	}
-
 }
