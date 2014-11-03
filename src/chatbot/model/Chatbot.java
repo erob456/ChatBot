@@ -14,6 +14,7 @@ public class Chatbot
 	private ArrayList<String> stringList;
 	private String name;
 	private int chatCount;
+	myUser = new ChatbotUser();
 
 	/**
 	 * Creates a ChatBot object with the supplied name and initializes the
@@ -28,9 +29,18 @@ public class Chatbot
 
 		this.name = name;
 		chatCount = 0;
+		contentArea = "";
 		fillTheMemeList();
+		
+		
 	}
 
+	public ChatbotUser getMyUser();
+	{
+		return myUser;
+	}
+	
+	public void setMyUser(ChatbotUser)
 	/**
 	 * Retrieves the name of the Chatbot object.
 	 * 
@@ -87,8 +97,12 @@ public class Chatbot
 	{
 		String result = "";
 
-		int randomPosition = (int) (Math.random() * 3);
-		if (currentInput != null)
+		if(getChatCount() < 7)
+		{
+			
+		}
+		int randomPosition = (int) (Math.random() * 4);
+		if (currentInput != null && currentInput.length() > 0)
 		{
 			if(currentInput.contains("add:"))
 			{
@@ -117,7 +131,7 @@ public class Chatbot
 					result = "try again another time";
 				}
 			}
-			else
+			else if (randomPosition == 2)
 			{
 				if (memeChecker(currentInput))
 				{
@@ -129,11 +143,16 @@ public class Chatbot
 					
 				}
 			}
+			else
+			{
+				//
+			}
 		}
 		else
 		{
 			result = "I'm sorry my presence makes you speechless";
 		}
+		updateChatCount();
 		return result;
 	}
 	
