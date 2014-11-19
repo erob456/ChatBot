@@ -45,6 +45,7 @@ public class ChatbotPanel extends JPanel
 	{
 		chatArea.setLineWrap(true);
 		chatArea.setWrapStyleWord(true);
+		chatArea.setEditable(false);
 	}
 
 	private void setupPanel()
@@ -97,6 +98,7 @@ public class ChatbotPanel extends JPanel
 				showTextMessage(currentInput);
 				showTextMessage(result);
 				firstTextField.setText("");
+				firstTextField.requestFocus();
 							
 			}
 		});

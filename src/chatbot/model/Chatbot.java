@@ -2,6 +2,8 @@ package chatbot.model;
 
 import java.util.ArrayList;
 
+import javax.swing.JScrollPane;
+
 /**
  * The chatbot model class. Used for checking and manipulating Strings.
  * 
@@ -10,11 +12,31 @@ import java.util.ArrayList;
  */
 public class Chatbot
 {
+	/**
+	 * The programmer supplied list of memes.
+	 */
 	private ArrayList<String> memeList;
-	private ArrayList<String> stringList;
+	/**
+	 * The name of the Chatbot.
+	 */
 	private String name;
+	/**
+	 * The programmer specified content area for the contentChecker method.
+	 */
+	private String contentArea;
+	/**
+	 * The amount of chats that have occurred, with the exception of blank
+	 * entries.
+	 */
 	private int chatCount;
-	myUser = new ChatbotUser();
+	/**
+	 * The current user of the Chatbot object
+	 */
+	private ChatbotUser myUser;
+	/**
+	 * The list of user input for the Chatbot.
+	 */
+	private ArrayList<String> userInputList;
 
 	/**
 	 * Creates a ChatBot object with the supplied name and initializes the
@@ -26,21 +48,15 @@ public class Chatbot
 	public Chatbot(String name)
 	{
 		memeList = new ArrayList<String>();
-
+		userInputList = new ArrayList<String>();
 		this.name = name;
-		chatCount = 0;
 		contentArea = "";
+		chatCount = 0;
+		getContentArea();
 		fillTheMemeList();
-		
-		
+
 	}
 
-	public ChatbotUser getMyUser();
-	{
-		return myUser;
-	}
-	
-	public void setMyUser(ChatbotUser)
 	/**
 	 * Retrieves the name of the Chatbot object.
 	 * 
@@ -49,6 +65,26 @@ public class Chatbot
 	public String getName()
 	{
 		return name;
+	}
+
+	public ChatbotUser getMyUser()
+	{
+		return myUser;
+	}
+
+	public void setMyUser(ChatbotUser myUser)
+	{
+		this.myUser = myUser;
+	}
+
+	public JScrollPane getContentArea()
+	{
+		return contentArea;
+	}
+
+	public void setContentArea(JScrollPane userInput)
+	{
+		this.contentArea = userInput;
 	}
 
 	/**
@@ -97,66 +133,79 @@ public class Chatbot
 	{
 		String result = "";
 
-		if(getChatCount() < 7)
+		if (getChatCount() < 5)
 		{
-			
+			myUser.setUserName(currentInput);
+			result = "You have a cool name" + myUser.getUserName() + "So... How old are you?";
 		}
-		int randomPosition = (int) (Math.random() * 4);
-		if (currentInput != null && currentInput.length() > 0)
+		else if (currentInput != null && currentInput.length() > 0)
 		{
-			if(currentInput.contains("add:"))
+			result = randomChatConversation(currentInput);
+		}
+		else
+		{
+			result = "Plz use words";
+			chatCount--;
+	}
+		updateChatCount();
+		return result;
+	private String introduceUser(String input)
+	{
+		if (currentInput.contains("add:"))
+		{
+			memeList.add(currentInput.substring(5));
+		}
+		if (randomPosition == 0)
+		{
+			if (stringLengthChecker(currentInput))
 			{
-				memeList.add(currentInput.substring(5));
-			}
-			if (randomPosition == 0)
-			{
-				if (stringLengthChecker(currentInput))
-				{
-					result = "too long";
-				}
-				else
-				{
-					memeList.add(currentInput);
-					result = "What is with you and using short words?";
-				}
-			}
-			else if (randomPosition == 1)
-			{
-				if (contentChecker(currentInput))
-				{
-					result = "yup, you know the secret";
-				}
-				else
-				{
-					result = "try again another time";
-				}
-			}
-			else if (randomPosition == 2)
-			{
-				if (memeChecker(currentInput))
-				{
-					result = "Cool! " + currentInput + " is on of my favorite memes! Are there any more memes you like?";
-				}
-				else
-				{
-					result = "I hate to break it to you, but your trend setting skills are not prime. Try again.";
-					
-				}
+				result = "too long";
 			}
 			else
 			{
-				//
+				memeList.add(currentInput);
+				result = "What is with you and using short words?";
+			}
+		}
+		else if (randomPosition == 1)
+		{
+			if (contentChecker(currentInput))
+			{
+				result = "yup, you know the secret";
+			}
+			else
+			{
+				result = "try again another time";
+			}
+		}
+		else if (randomPosition == 2)
+		{
+			if (memeChecker(currentInput))
+			{
+				result = "Cool! " + currentInput + " is on of my favorite memes! Are there any more memes you like?";
+			}
+			else
+			{
+				result = "I hate to break it to you, but your trend setting skills are not prime. Try again.";
+
 			}
 		}
 		else
 		{
-			result = "I'm sorry my presence makes you speechless";
+			//
+
 		}
-		updateChatCount();
 		return result;
+
 	}
-	
-	
+			}
+
+	private String introduceUser(String input)
+	{
+		String userQuestion = "";
+
+		return userQuestion;
+	}
 
 	private boolean stringLengthChecker(String input)
 	{
@@ -166,20 +215,20 @@ public class Chatbot
 		{
 			isTooShort = true;
 		}
-		
+
 		return isTooShort;
 	}
-	
+
 	private boolean contentChecker(String input)
 	{
 		boolean hasContent = false;
-			
+
 		if (input.contains("computers"))
 		{
 			hasContent = true;
-			
+
 		}
-		
+
 		return hasContent;
 	}
 
@@ -238,4 +287,5 @@ public class Chatbot
 
 		return okToQuit;
 	}
+
 }
