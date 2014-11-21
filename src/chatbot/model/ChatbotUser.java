@@ -25,13 +25,17 @@ public class ChatbotUser
 	{
 		return age;
 	}
-	public boolean isNeedsGlasses()
+	public boolean needsGlasses()
 	{
 		return needsGlasses;
 	}
-	public boolean isHasMustache()
+	public boolean hasMustache()
 	{
 		return hasMustache;
+	}
+	public double setWeight(double userWeight)
+	{
+		return userWeight;
 	}
 	public void setUserName(String userName)
 	{

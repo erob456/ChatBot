@@ -21,7 +21,6 @@ public class ChatbotPanel extends JPanel
 	private SpringLayout baseLayout;
 	private JTextArea chatArea;
 	private JScrollPane chatPane;
-	private JScrollPane textArea;
 
 	public ChatbotPanel(ChatbotAppController baseController)
 	{
@@ -31,8 +30,12 @@ public class ChatbotPanel extends JPanel
 		firstTextField = new JTextField(25);
 		firstTextField.setHorizontalAlignment(SwingConstants.CENTER);
 		baseLayout = new SpringLayout();
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstButton, -544, SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 0, SpringLayout.WEST, firstButton);
+		baseLayout.putConstraint(SpringLayout.EAST, firstButton, -88, SpringLayout.EAST, this);
 		chatPane = new JScrollPane();
-		textArea = new JScrollPane();
+		baseLayout.putConstraint(SpringLayout.SOUTH, firstTextField, 0, SpringLayout.SOUTH, chatPane);
+		chatArea = new JTextArea(5, 20);
 		
 		
 		setupPane();
@@ -51,6 +54,7 @@ public class ChatbotPanel extends JPanel
 	private void setupPanel()
 	{
 		this.setBackground(Color.BLUE);
+		this.setSize(500, 700);
 		this.setLayout(baseLayout);
 		this.add(firstButton);
 		this.add(firstTextField);
@@ -61,29 +65,27 @@ public class ChatbotPanel extends JPanel
 
 	private void setupLayout()
 	{
+		
+		chatArea = new JTextArea(5, 20);
+		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, 25, SpringLayout.SOUTH, firstButton);
+		baseLayout.putConstraint(SpringLayout.WEST, chatArea, 15, SpringLayout.WEST, firstButton);
+		chatArea.setEditable(false);
+		add(chatArea);
 		JLabel lblChatbotLabel = new JLabel("Chat Bot");
-		baseLayout.putConstraint(SpringLayout.SOUTH, lblChatbotLabel, 0, SpringLayout.NORTH, firstTextField);
-		baseLayout.putConstraint(SpringLayout.EAST, lblChatbotLabel, -179, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, lblChatbotLabel, 10, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, lblChatbotLabel, 155, SpringLayout.WEST, this);
 		lblChatbotLabel.setBackground(Color.DARK_GRAY);
 		lblChatbotLabel.setForeground(Color.ORANGE);
 		lblChatbotLabel.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		lblChatbotLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblChatbotLabel);
-		baseLayout.putConstraint(SpringLayout.EAST, firstButton, -117, SpringLayout.EAST, this);
-		baseLayout.putConstraint(SpringLayout.NORTH, firstTextField, 34, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, firstTextField, 122, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.SOUTH, firstButton, -27, SpringLayout.SOUTH, this);
 		baseLayout.putConstraint(SpringLayout.NORTH, chatPane, 90, SpringLayout.NORTH, this);
 		baseLayout.putConstraint(SpringLayout.WEST, chatPane, 40, SpringLayout.WEST, this);
 		
-		chatArea = new JTextArea(5, 20);
-		baseLayout.putConstraint(SpringLayout.NORTH, chatArea, 1, SpringLayout.NORTH, chatPane);
-		baseLayout.putConstraint(SpringLayout.EAST, chatArea, -33, SpringLayout.EAST, this);
-		add(chatArea);
-		
 		JTextArea textArea = new JTextArea(5, 20);
-		baseLayout.putConstraint(SpringLayout.NORTH, textArea, 0, SpringLayout.NORTH, chatArea);
-		baseLayout.putConstraint(SpringLayout.WEST, textArea, 2, SpringLayout.EAST, chatPane);
+		textArea.setWrapStyleWord(true);
+		baseLayout.putConstraint(SpringLayout.NORTH, textArea, 6, SpringLayout.SOUTH, chatArea);
+		baseLayout.putConstraint(SpringLayout.WEST, textArea, 0, SpringLayout.WEST, chatPane);
 		add(textArea);
 	}
 
