@@ -27,7 +27,7 @@ public class ChatbotAppController
 		applicationView = new ChatbotView(this);
 		appFrame = new ChatbotFrame(this);
 		mySillyChatbot = new Chatbot("Derp");
-		startMessage = "Welcome to the " + mySillyChatbot.getName() + " chatbot.  What is your favorite meme?";
+		startMessage = "Welcome to the " + mySillyChatbot.getName() + " chatbot. What is your name?";
 		quitMessage = "Goodbye cruel user :(";
 
 	}

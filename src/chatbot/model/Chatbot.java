@@ -270,12 +270,7 @@ public class Chatbot
 		String mashed = "";
 		
 		mashed = input.substring(input.length()/2);
-		mashed += input.substring(input.length()/2);
-		mashed += input.substring(input.length()/2);
-		mashed += input.substring(input.length()/2);
-		mashed += input.substring(input.length()/2);
-		mashed += input.substring(input.length()/2);
-		
+		mashed += input.substring(input.length()/2);		
 		return mashed;
 	}
 	
