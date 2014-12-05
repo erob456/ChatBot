@@ -12,8 +12,16 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.awt.Font;
 
+/**
+ * This is the class for the GUI element of the chatbot.
+ * @author erob7388
+ * 
+ */
 public class ChatbotPanel extends JPanel
 {
+	/**
+	 * Declaration and construction of the elements in the Panel.
+	 */
 	private ChatbotAppController baseController;
 
 	private JButton firstButton;
@@ -22,6 +30,10 @@ public class ChatbotPanel extends JPanel
 	private JTextArea chatArea;
 	private JScrollPane chatPane;
 
+	/**
+	 * The base controller declares the variables.
+	 * @param baseController
+	 */
 	public ChatbotPanel(ChatbotAppController baseController)
 	{
 		this.baseController = baseController;
@@ -43,6 +55,9 @@ public class ChatbotPanel extends JPanel
 		setupListeners();
 	}
 
+	/**
+	 * The setupPane sets the characteristics of the chatPane section.
+	 */
 	private void setupPane()
 	{
 		chatArea.setLineWrap(true);
@@ -54,6 +69,9 @@ public class ChatbotPanel extends JPanel
 
 	}
 
+	/**
+	 * The setupPanel creates the base layout for the window that appears when run.
+	 */
 	private void setupPanel()
 	{
 		this.setBackground(Color.BLUE);
@@ -65,6 +83,9 @@ public class ChatbotPanel extends JPanel
 
 	}
 
+	/**
+	 * The setupLayout declares the placement of each of the items on the window.
+	 */
 	private void setupLayout()
 	{
 
@@ -83,6 +104,9 @@ public class ChatbotPanel extends JPanel
 
 	}
 
+	/**
+	 * These listeners check for when the button is clicked then sets the chatArea text. 
+	 */
 	private void setupListeners()
 	{
 		firstButton.addActionListener(new ActionListener()
@@ -90,6 +114,7 @@ public class ChatbotPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				String currentInput = firstTextField.getText();
+				chatArea.setText(chatArea.getText());
 				String result = baseController.getChatbotDialog(currentInput);
 				showTextMessage(currentInput);
 				showTextMessage(result);
@@ -100,6 +125,10 @@ public class ChatbotPanel extends JPanel
 		});
 	}
 
+	/**
+	 * Sets text from the input into the output section.
+	 * @param userInput
+	 */
 	public void showTextMessage(String userInput)
 	{
 		chatArea.append("\n" + userInput);

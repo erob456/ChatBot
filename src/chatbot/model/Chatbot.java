@@ -125,8 +125,7 @@ public class Chatbot
 	 * Processes input for the user against the checker methods. Returns the
 	 * next output for the view.
 	 * 
-	 * @param currentInput
-	 *            The supplied text.
+	 * @param input The supplied text.
 	 * @return The processed text based on checker or other methods.
 	 */
 	public String processText(String input)
@@ -137,7 +136,7 @@ public class Chatbot
 		{
 			result = introduceUser(input);
 		}
-		else if (input != null && input.length() > 0)
+		else if (input != null && getChatCount() >= 5)
 		{
 			result = randomChatConversation(input);
 		}
@@ -150,6 +149,11 @@ public class Chatbot
 		return result;
 	}
 
+	/**
+	 * This part asks the user questions that it will store as info about the user.
+	 * @param input This is the text that the user enters into the text box.
+	 * @return Returns the next question.
+	 */
 	private String introduceUser(String input)
 	{
 		String userQuestion = "";
@@ -188,6 +192,11 @@ public class Chatbot
 		return userQuestion;
 	}
 
+	/**
+	 * Random conversation asks random questions depending on the random number chosen.
+	 * @param input Will check the inputed text and take it into it's parameters.
+	 * @return Returns another question.
+	 */
 	private String randomChatConversation(String input)
 	{
 		String conversation = "";
@@ -264,7 +273,11 @@ public class Chatbot
 		}
 		return conversation;
 	}
-	
+	/**
+	 * Theoretically checks to see if you are just mashing your keyboard.
+	 * @param input What it checks for mashing.
+	 * @return returns if it is mashed or not.
+	 */
 	private String mashingDetected(String input)
 	{
 		String mashed = "";
@@ -274,6 +287,11 @@ public class Chatbot
 		return mashed;
 	}
 	
+	/**
+	 * If there is no mashing detected, it will thank you for not mashing.
+	 * @param input
+	 * @return Message for not mashing
+	 */
 	private String noMashingDetected(String input)
 	{
 		String noMashing = "Thanks for not mshing you keyboard with";
@@ -290,7 +308,7 @@ public class Chatbot
 	/**
 	 * Check for keyboard mashing.
 	 * @param input The user supplied text
-	 * @return
+	 * @return True if text is same as in this method.
 	 */
 	private boolean mashChecker(String input)
 	{
@@ -304,6 +322,11 @@ public class Chatbot
 		return isMashing;
 	}
 	
+	/**
+	 * Talks about the topic that the user mentions.
+	 * @param userInput What the user enters in the text field for the introduceUser method.
+	 * @return Returns an answer including your previous text.
+	 */
 	private String userTopic(String userInput)
 	{
 		String userBasedResponse = "";
@@ -313,7 +336,7 @@ public class Chatbot
 		switch (randomUserTopic)
 		{
 			case 1:
-				userBasedResponse = myUser.hasMustache() + " is the response to tattoos :D";
+				userBasedResponse = myUser.hasMustache() + " is the response to mustaches :D";
 				break;
 			case 0:
 				userBasedResponse = myUser.getUserName() + " is a silly name :P";
@@ -325,7 +348,11 @@ public class Chatbot
 
 		return userBasedResponse;
 	}
-	
+	/**
+	 * Creates a loop for the questions.
+	 * @param userInput
+	 * @return If it matches it.
+	 */
 	private boolean userInputChecker(String userInput)
 	{
 		boolean matchesInput = false;
@@ -343,6 +370,11 @@ public class Chatbot
 		return matchesInput;
 	}
 
+	/**
+	 * Checks the length of the input
+	 * @param input
+	 * @return Returns result of test.
+	 */
 	private boolean stringLengthChecker(String input)
 	{
 		boolean isTooShort = false;
@@ -355,6 +387,11 @@ public class Chatbot
 		return isTooShort;
 	}
 
+	/**
+	 * If there is input, it will transfer it to chatPane and also update the chatCount.
+	 * @param input
+	 * @return Returns if it has anything
+	 */
 	private boolean contentChecker(String input)
 	{
 		boolean hasContent = false;
@@ -377,9 +414,9 @@ public class Chatbot
 	}
 
 	/**
-	 * 
+	 * Checks if the input is a meme or not.
 	 * @param input
-	 * @return
+	 * @return True if contains a meme.
 	 */
 	private boolean memeChecker(String input)
 	{
